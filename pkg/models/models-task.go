@@ -32,10 +32,10 @@ func GetTask() []Task {
 	return task
 }
 
-func GetTaskById(ID int64) *Task {
+func GetTaskById(ID int64) (*Task, *gorm.DB) {
 	var task Task
-	db.Where("ID=?", ID).Find(&task)
-	return &task
+	db := db.Where("ID=?", ID).Find(&task)
+	return &task, db
 }
 
 func Delete(ID int64) Task {

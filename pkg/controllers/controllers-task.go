@@ -22,7 +22,7 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func GetTaskById(w http.ResponseWriter, r *http.Request) {
+func GetById(w http.ResponseWriter, r *http.Request) {
 	valuesMap := mux.Vars(r)
 	idstr := valuesMap["ID"]
 	id, err := strconv.ParseInt(idstr, 0, 0)
