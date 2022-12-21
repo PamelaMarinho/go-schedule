@@ -32,10 +32,10 @@ func GetTask() []Task {
 	return task
 }
 
-func GetTaskById(ID int64) Task {
+func GetTaskById(ID int64) *Task {
 	var task Task
-	db.Where("ID=?", ID).Find(task)
-	return task
+	db.Where("ID=?", ID).Find(&task)
+	return &task
 }
 
 func Delete(ID int64) Task {
