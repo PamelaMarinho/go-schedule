@@ -11,6 +11,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func Create(w http.ResponseWriter, r *http.Request) {
+	task := &models.Task{}
+	utils.ParseBody(r, task)
+	t := task.Create()
+	taskParsed, err := json.Marshal(t)
+	if err != nil {
+		panic("error while parsing")
+	}
+	w.Header().Set("Content-Type", "Application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(taskParsed)
+}
+
 func GetTask(w http.ResponseWriter, r *http.Request) {
 	tasks := models.GetTask()
 	res, err := json.Marshal(tasks)
